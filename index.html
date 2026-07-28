@@ -1,0 +1,2816 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Create polished Caribbean-themed AI image prompts featuring one to four adult women."
+    />
+
+    <title>Tropical Queen Scene Generator</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#generator-workspace"> Skip to generator </a>
+
+    <header class="site-header" id="generator-header">
+      <div class="header-overlay"></div>
+
+      <div class="header-content">
+        <p class="header-eyebrow">Caribbean-Inspired Image Prompt Creator</p>
+
+        <h1>Tropical Queen Scene Generator</h1>
+
+        <p class="header-subtitle">
+          Create vibrant Caribbean-themed image prompts featuring one to four
+          adult women.
+        </p>
+      </div>
+    </header>
+
+    <main id="generator-workspace">
+      <section class="intro-section" aria-labelledby="intro-heading">
+        <div class="content-container">
+          <h2 id="intro-heading" class="section-title">
+            Create Your Tropical Queen Scene
+          </h2>
+
+          <p class="intro-text">
+            Choose your scene details, customize your tropical queens, and
+            generate one polished image prompt.
+          </p>
+
+          <div class="generator-rules" role="note">
+            <strong>Generator rules:</strong>
+            Adult women only, one to four main characters, and one finished
+            image prompt.
+          </div>
+        </div>
+      </section>
+
+      <section class="quick-actions-section" aria-label="Generator actions">
+        <div class="content-container quick-actions">
+          <button
+            type="button"
+            class="button button-secondary"
+            id="randomize-all-btn"
+          >
+            Randomize
+          </button>
+
+          <button
+            type="button"
+            class="button button-primary"
+            id="generate-prompt-btn"
+          >
+            Generate Prompt
+          </button>
+
+          <button type="button" class="button button-quiet" id="clear-all-btn">
+            Clear All
+          </button>
+        </div>
+      </section>
+
+      <section class="validation-section" aria-live="polite" aria-atomic="true">
+        <div class="validation-summary" id="validation-summary" hidden></div>
+      </section>
+
+      <section class="workspace-section">
+        <div class="content-container workspace-layout">
+          <div class="controls-column">
+            <nav class="category-navigation" aria-label="Prompt categories">
+              <button
+                type="button"
+                class="category-nav-button active"
+                data-target-panel="character-panel"
+                aria-controls="character-panel"
+                aria-selected="true"
+              >
+                Character
+              </button>
+
+              <button
+                type="button"
+                class="category-nav-button"
+                data-target-panel="beauty-panel"
+                aria-controls="beauty-panel"
+                aria-selected="false"
+              >
+                Hair &amp; Beauty
+              </button>
+
+              <button
+                type="button"
+                class="category-nav-button"
+                data-target-panel="theme-panel"
+                aria-controls="theme-panel"
+                aria-selected="false"
+              >
+                Caribbean Theme
+              </button>
+
+              <button
+                type="button"
+                class="category-nav-button"
+                data-target-panel="clothing-panel"
+                aria-controls="clothing-panel"
+                aria-selected="false"
+              >
+                Clothing &amp; Styling
+              </button>
+
+              <button
+                type="button"
+                class="category-nav-button"
+                data-target-panel="pose-panel"
+                aria-controls="pose-panel"
+                aria-selected="false"
+              >
+                Pose &amp; Expression
+              </button>
+
+              <button
+                type="button"
+                class="category-nav-button"
+                data-target-panel="background-panel"
+                aria-controls="background-panel"
+                aria-selected="false"
+              >
+                Background
+              </button>
+
+              <button
+                type="button"
+                class="category-nav-button"
+                data-target-panel="style-panel"
+                aria-controls="style-panel"
+                aria-selected="false"
+              >
+                Image Style
+              </button>
+
+              <button
+                type="button"
+                class="category-nav-button"
+                data-target-panel="final-details-panel"
+                aria-controls="final-details-panel"
+                aria-selected="false"
+              >
+                Final Details
+              </button>
+            </nav>
+
+            <form id="prompt-generator-form" novalidate>
+              <section
+                class="category-panel active"
+                id="character-panel"
+                data-category="character"
+                aria-labelledby="character-heading"
+              >
+                <div class="category-header">
+                  <div>
+                    <p class="category-number">01</p>
+                    <h2 id="character-heading">Character</h2>
+                    <p>
+                      Choose how many adult women appear and define their
+                      overall appearance.
+                    </p>
+                  </div>
+
+                  <div class="category-header-actions">
+                    <button
+                      type="button"
+                      class="icon-button lock-category-button"
+                      data-lock-category="character"
+                      aria-pressed="false"
+                    >
+                      Lock
+                    </button>
+
+                    <button
+                      type="button"
+                      class="text-button clear-category-button"
+                      data-clear-category="character"
+                    >
+                      Clear Category
+                    </button>
+                  </div>
+                </div>
+
+                <div class="field-grid">
+                  <div class="form-field">
+                    <label for="character-count">
+                      Number of Women
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <select
+                      id="character-count"
+                      name="characterCount"
+                      data-field-key="characterCount"
+                      required
+                    >
+                      <option value="">Choose one</option>
+                      <option value="one adult woman">1 woman</option>
+                      <option value="two adult women">2 women</option>
+                      <option value="three adult women">3 women</option>
+                      <option value="four adult women">4 women</option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="group-arrangement"> Group Arrangement </label>
+
+                    <select
+                      id="group-arrangement"
+                      name="groupArrangement"
+                      data-field-key="groupArrangement"
+                    >
+                      <option value="">Choose one</option>
+                      <option value="a single confident focal subject">
+                        Solo focal subject
+                      </option>
+                      <option value="standing closely together as friends">
+                        Close friend group
+                      </option>
+                      <option value="walking together in formation">
+                        Walking formation
+                      </option>
+                      <option value="dancing together in coordinated movement">
+                        Coordinated dancing
+                      </option>
+                      <option
+                        value="posed in a balanced fashion editorial formation"
+                      >
+                        Editorial formation
+                      </option>
+                      <option
+                        value="arranged in a powerful front-facing lineup"
+                      >
+                        Power lineup
+                      </option>
+                      <option
+                        value="interacting naturally in a joyful candid moment"
+                      >
+                        Joyful candid interaction
+                      </option>
+                      <option
+                        value="positioned at different depths for a cinematic group composition"
+                      >
+                        Layered cinematic group
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="age-range"> Adult Age Range </label>
+
+                    <select
+                      id="age-range"
+                      name="ageRange"
+                      data-field-key="ageRange"
+                    >
+                      <option value="">Choose one</option>
+                      <option value="in her twenties">20s</option>
+                      <option value="in her thirties">30s</option>
+                      <option value="in her forties">40s</option>
+                      <option value="in her fifties">50s</option>
+                      <option value="in her sixties">60s</option>
+                      <option value="mature adult women of varied ages">
+                        Mixed adult ages
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="ethnicity-heritage">
+                      Ethnicity or Heritage
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <select
+                      id="ethnicity-heritage"
+                      name="ethnicityHeritage"
+                      data-field-key="ethnicityHeritage"
+                      required
+                    >
+                      <option value="">Choose one</option>
+                      <option value="Afro-Caribbean">Afro-Caribbean</option>
+                      <option value="Indo-Caribbean">Indo-Caribbean</option>
+                      <option value="Caribbean Latina">Caribbean Latina</option>
+                      <option value="mixed-heritage Caribbean">
+                        Mixed-Heritage Caribbean
+                      </option>
+                      <option value="Haitian">Haitian</option>
+                      <option value="Jamaican">Jamaican</option>
+                      <option value="Trinidadian and Tobagonian">
+                        Trinidadian and Tobagonian
+                      </option>
+                      <option value="Bajan">Bajan</option>
+                      <option value="Bahamian">Bahamian</option>
+                      <option value="Dominican">Dominican</option>
+                      <option value="Puerto Rican">Puerto Rican</option>
+                      <option value="Cuban">Cuban</option>
+                      <option value="Guyanese">Guyanese</option>
+                      <option value="Belizean">Belizean</option>
+                      <option value="Saint Lucian">Saint Lucian</option>
+                      <option value="Grenadian">Grenadian</option>
+                      <option value="Antiguan and Barbudan">
+                        Antiguan and Barbudan
+                      </option>
+                      <option value="Vincentian">Vincentian</option>
+                      <option value="Kittitian and Nevisian">
+                        Kittitian and Nevisian
+                      </option>
+                      <option
+                        value="Caribbean women with diverse island heritage"
+                      >
+                        Mixed Caribbean group
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="skin-tone"> Skin Tone </label>
+
+                    <select
+                      id="skin-tone"
+                      name="skinTone"
+                      data-field-key="skinTone"
+                    >
+                      <option value="">Choose one</option>
+                      <option value="porcelain skin">Porcelain</option>
+                      <option value="fair skin">Fair</option>
+                      <option value="light golden skin">Light Golden</option>
+                      <option value="warm beige skin">Warm Beige</option>
+                      <option value="honey-brown skin">Honey Brown</option>
+                      <option value="caramel-brown skin">Caramel Brown</option>
+                      <option value="warm brown skin">Warm Brown</option>
+                      <option value="deep brown skin">Deep Brown</option>
+                      <option value="rich dark skin">Rich Dark</option>
+                      <option value="a range of beautiful Caribbean skin tones">
+                        Varied Skin Tones
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="body-type"> Body Type </label>
+
+                    <select
+                      id="body-type"
+                      name="bodyType"
+                      data-field-key="bodyType"
+                    >
+                      <option value="">Choose one</option>
+                      <option value="slender body type">Slender</option>
+                      <option value="athletic body type">Athletic</option>
+                      <option value="curvy body type">Curvy</option>
+                      <option value="plus-size body type">Plus Size</option>
+                      <option value="full-figured body type">
+                        Full Figured
+                      </option>
+                      <option value="petite body type">Petite</option>
+                      <option value="tall statuesque body type">
+                        Tall and Statuesque
+                      </option>
+                      <option value="diverse natural body types">
+                        Mixed Body Types
+                      </option>
+                    </select>
+                  </div>
+
+                  <fieldset class="form-field full-width">
+                    <legend>Facial Features</legend>
+
+                    <div
+                      class="chip-group"
+                      data-multi-select="true"
+                      data-max-selections="3"
+                      aria-describedby="facial-features-help"
+                    >
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="soft rounded facial features"
+                      >
+                        Soft Rounded
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="defined cheekbones"
+                      >
+                        Defined Cheekbones
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="full lips"
+                      >
+                        Full Lips
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="almond-shaped eyes"
+                      >
+                        Almond Eyes
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="wide expressive eyes"
+                      >
+                        Expressive Eyes
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="a strong sculpted jawline"
+                      >
+                        Sculpted Jawline
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="natural freckles"
+                      >
+                        Natural Freckles
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="a radiant natural complexion"
+                      >
+                        Radiant Complexion
+                      </button>
+                    </div>
+
+                    <input
+                      type="hidden"
+                      id="facial-features"
+                      name="facialFeatures"
+                      data-field-key="facialFeatures"
+                    />
+
+                    <p class="field-help" id="facial-features-help">
+                      Choose up to three.
+                    </p>
+                  </fieldset>
+
+                  <div class="form-field full-width">
+                    <label for="character-custom-details">
+                      Custom Character Details
+                    </label>
+
+                    <textarea
+                      id="character-custom-details"
+                      name="characterCustomDetails"
+                      data-field-key="characterCustomDetails"
+                      rows="3"
+                      maxlength="300"
+                      placeholder="Add any extra appearance details."
+                    ></textarea>
+                  </div>
+                </div>
+              </section>
+
+              <section
+                class="category-panel"
+                id="beauty-panel"
+                data-category="beauty"
+                aria-labelledby="beauty-heading"
+                hidden
+              >
+                <div class="category-header">
+                  <div>
+                    <p class="category-number">02</p>
+                    <h2 id="beauty-heading">Hair &amp; Beauty</h2>
+                    <p>
+                      Build the hairstyle, makeup, nails, and finishing beauty
+                      details.
+                    </p>
+                  </div>
+
+                  <div class="category-header-actions">
+                    <button
+                      type="button"
+                      class="icon-button lock-category-button"
+                      data-lock-category="beauty"
+                      aria-pressed="false"
+                    >
+                      Lock
+                    </button>
+
+                    <button
+                      type="button"
+                      class="text-button clear-category-button"
+                      data-clear-category="beauty"
+                    >
+                      Clear Category
+                    </button>
+                  </div>
+                </div>
+
+                <div class="field-grid">
+                  <div class="form-field">
+                    <label for="hair-style">Hairstyle</label>
+
+                    <select
+                      id="hair-style"
+                      name="hairStyle"
+                      data-field-key="hairStyle"
+                    >
+                      <option value="">Choose one</option>
+                      <option value="long flowing body waves">
+                        Long Body Waves
+                      </option>
+                      <option value="voluminous loose curls">
+                        Loose Curls
+                      </option>
+                      <option value="defined natural curls">
+                        Natural Curls
+                      </option>
+                      <option value="a full rounded Afro">Afro</option>
+                      <option value="a high curly puff">Curly Puff</option>
+                      <option value="a sleek high ponytail">
+                        High Ponytail
+                      </option>
+                      <option value="a sleek low ponytail">Low Ponytail</option>
+                      <option value="a glamorous braided ponytail">
+                        Braided Ponytail
+                      </option>
+                      <option value="long knotless braids">
+                        Knotless Braids
+                      </option>
+                      <option value="intricate Fulani braids">
+                        Fulani Braids
+                      </option>
+                      <option value="long box braids">Box Braids</option>
+                      <option value="elegant goddess braids">
+                        Goddess Braids
+                      </option>
+                      <option value="long flowing locs">Long Locs</option>
+                      <option value="a polished loc updo">Loc Updo</option>
+                      <option value="a sleek bob">Sleek Bob</option>
+                      <option value="a curly bob">Curly Bob</option>
+                      <option value="a sculpted pixie cut">Pixie Cut</option>
+                      <option value="vintage finger waves">Finger Waves</option>
+                      <option value="an elegant high bun">High Bun</option>
+                      <option value="a romantic half-up half-down style">
+                        Half-Up Half-Down
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="hair-length">Hair Length</label>
+
+                    <select
+                      id="hair-length"
+                      name="hairLength"
+                      data-field-key="hairLength"
+                    >
+                      <option value="">Choose one</option>
+                      <option value="short hair">Short</option>
+                      <option value="chin-length hair">Chin Length</option>
+                      <option value="shoulder-length hair">
+                        Shoulder Length
+                      </option>
+                      <option value="mid-back-length hair">
+                        Mid-Back Length
+                      </option>
+                      <option value="waist-length hair">Waist Length</option>
+                      <option value="extra-long dramatic hair">
+                        Extra Long
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="hair-color">Hair Color</label>
+
+                    <select
+                      id="hair-color"
+                      name="hairColor"
+                      data-field-key="hairColor"
+                    >
+                      <option value="">Choose one</option>
+                      <option value="jet-black hair">Jet Black</option>
+                      <option value="soft black hair">Soft Black</option>
+                      <option value="dark chocolate-brown hair">
+                        Dark Chocolate Brown
+                      </option>
+                      <option value="warm chestnut-brown hair">
+                        Chestnut Brown
+                      </option>
+                      <option value="honey-blonde hair">Honey Blonde</option>
+                      <option value="golden-blonde hair">Golden Blonde</option>
+                      <option value="copper-red hair">Copper Red</option>
+                      <option value="burgundy hair">Burgundy</option>
+                      <option value="deep plum hair">Deep Plum</option>
+                      <option value="turquoise and blue ombré hair">
+                        Turquoise Ombre
+                      </option>
+                      <option value="sunset-orange and red ombré hair">
+                        Sunset Ombre
+                      </option>
+                      <option value="multicolored carnival-inspired hair">
+                        Carnival Multicolor
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="hair-accessory">Hair Accessory</label>
+
+                    <select
+                      id="hair-accessory"
+                      name="hairAccessory"
+                      data-field-key="hairAccessory"
+                    >
+                      <option value="">None</option>
+                      <option value="a jeweled feather headband">
+                        Jeweled Feather Headband
+                      </option>
+                      <option value="a colorful floral hairpiece">
+                        Tropical Floral Hairpiece
+                      </option>
+                      <option value="gold hair cuffs">Gold Hair Cuffs</option>
+                      <option value="beaded braid accents">
+                        Beaded Braid Accents
+                      </option>
+                      <option value="rhinestone hair pins">
+                        Rhinestone Hair Pins
+                      </option>
+                      <option value="a silk tropical-print headwrap">
+                        Tropical Headwrap
+                      </option>
+                      <option value="delicate shell hair accessories">
+                        Shell Accessories
+                      </option>
+                      <option
+                        value="bright carnival ribbons woven through the hair"
+                      >
+                        Carnival Ribbons
+                      </option>
+                    </select>
+                  </div>
+
+                  <fieldset class="form-field full-width">
+                    <legend>Makeup</legend>
+
+                    <div
+                      class="chip-group"
+                      data-multi-select="true"
+                      data-max-selections="4"
+                      aria-describedby="makeup-help"
+                    >
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="natural radiant makeup"
+                      >
+                        Natural Radiance
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="soft glamorous makeup"
+                      >
+                        Soft Glam
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="bold carnival makeup"
+                      >
+                        Carnival Glam
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="shimmering gold eyeshadow"
+                      >
+                        Gold Eyeshadow
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="turquoise graphic eyeliner"
+                      >
+                        Turquoise Liner
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="dramatic winged eyeliner"
+                      >
+                        Winged Liner
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="glossy nude lips"
+                      >
+                        Glossy Nude Lips
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="bold red lipstick"
+                      >
+                        Red Lip
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="bronzed glowing skin"
+                      >
+                        Bronzed Glow
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="sparkling face gems"
+                      >
+                        Face Gems
+                      </button>
+                    </div>
+
+                    <input
+                      type="hidden"
+                      id="makeup"
+                      name="makeup"
+                      data-field-key="makeup"
+                    />
+
+                    <p class="field-help" id="makeup-help">
+                      Choose up to four.
+                    </p>
+                  </fieldset>
+
+                  <div class="form-field">
+                    <label for="eyelashes">Eyelashes</label>
+
+                    <select
+                      id="eyelashes"
+                      name="eyelashes"
+                      data-field-key="eyelashes"
+                    >
+                      <option value="">Choose one</option>
+                      <option value="natural defined eyelashes">Natural</option>
+                      <option value="soft wispy eyelashes">Soft Wispy</option>
+                      <option value="long glamorous eyelashes">
+                        Long Glamorous
+                      </option>
+                      <option value="dramatic feathered eyelashes">
+                        Dramatic Feathered
+                      </option>
+                      <option value="colorful carnival eyelashes">
+                        Colorful Carnival
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="nail-style">Nails</label>
+
+                    <select
+                      id="nail-style"
+                      name="nailStyle"
+                      data-field-key="nailStyle"
+                    >
+                      <option value="">Choose one</option>
+                      <option value="short natural nails">Short Natural</option>
+                      <option value="glossy nude almond-shaped nails">
+                        Nude Almond
+                      </option>
+                      <option value="long gold chrome nails">
+                        Gold Chrome
+                      </option>
+                      <option value="bright tropical ombré nails">
+                        Tropical Ombre
+                      </option>
+                      <option value="jeweled carnival nail art">
+                        Jeweled Carnival
+                      </option>
+                      <option value="bold red stiletto nails">
+                        Red Stiletto
+                      </option>
+                      <option value="turquoise and gold nail art">
+                        Turquoise and Gold
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="body-decoration">Body Decoration</label>
+
+                    <select
+                      id="body-decoration"
+                      name="bodyDecoration"
+                      data-field-key="bodyDecoration"
+                    >
+                      <option value="">None</option>
+                      <option value="delicate gold body chains">
+                        Gold Body Chains
+                      </option>
+                      <option value="rhinestone body gems">
+                        Rhinestone Body Gems
+                      </option>
+                      <option value="shimmering body glitter">
+                        Body Glitter
+                      </option>
+                      <option value="intricate metallic body paint">
+                        Metallic Body Paint
+                      </option>
+                      <option value="colorful carnival face and body gems">
+                        Carnival Gems
+                      </option>
+                      <option
+                        value="elegant temporary island-inspired body art"
+                      >
+                        Island-Inspired Body Art
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field full-width">
+                    <label for="beauty-custom-details">
+                      Custom Hair or Beauty Details
+                    </label>
+
+                    <textarea
+                      id="beauty-custom-details"
+                      name="beautyCustomDetails"
+                      data-field-key="beautyCustomDetails"
+                      rows="3"
+                      maxlength="300"
+                      placeholder="Add any extra hair, makeup, or beauty details."
+                    ></textarea>
+                  </div>
+                </div>
+              </section>
+
+              <section
+                class="category-panel"
+                id="theme-panel"
+                data-category="theme"
+                aria-labelledby="theme-heading"
+                hidden
+              >
+                <div class="category-header">
+                  <div>
+                    <p class="category-number">03</p>
+                    <h2 id="theme-heading">Caribbean Theme</h2>
+                    <p>
+                      Select the island influence, celebration, and scene
+                      direction.
+                    </p>
+                  </div>
+
+                  <div class="category-header-actions">
+                    <button
+                      type="button"
+                      class="icon-button lock-category-button"
+                      data-lock-category="theme"
+                      aria-pressed="false"
+                    >
+                      Lock
+                    </button>
+
+                    <button
+                      type="button"
+                      class="text-button clear-category-button"
+                      data-clear-category="theme"
+                    >
+                      Clear Category
+                    </button>
+                  </div>
+                </div>
+
+                <div class="field-grid">
+                  <div class="form-field">
+                    <label for="island-influence">
+                      Island or Regional Influence
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <select
+                      id="island-influence"
+                      name="islandInfluence"
+                      data-field-key="islandInfluence"
+                      required
+                    >
+                      <option value="">Choose one</option>
+                      <option value="Trinidad and Tobago">
+                        Trinidad and Tobago
+                      </option>
+                      <option value="Jamaica">Jamaica</option>
+                      <option value="Barbados">Barbados</option>
+                      <option value="The Bahamas">The Bahamas</option>
+                      <option value="Haiti">Haiti</option>
+                      <option value="the Dominican Republic">
+                        Dominican Republic
+                      </option>
+                      <option value="Puerto Rico">Puerto Rico</option>
+                      <option value="Cuba">Cuba</option>
+                      <option value="Saint Lucia">Saint Lucia</option>
+                      <option value="Grenada">Grenada</option>
+                      <option value="Antigua and Barbuda">
+                        Antigua and Barbuda
+                      </option>
+                      <option value="Saint Vincent and the Grenadines">
+                        Saint Vincent and the Grenadines
+                      </option>
+                      <option value="Saint Kitts and Nevis">
+                        Saint Kitts and Nevis
+                      </option>
+                      <option value="Dominica">Dominica</option>
+                      <option value="Guyana">Guyana</option>
+                      <option value="Belize">Belize</option>
+                      <option value="the wider Caribbean region">
+                        General Caribbean
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="celebration-type">
+                      Celebration or Festival
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <select
+                      id="celebration-type"
+                      name="celebrationType"
+                      data-field-key="celebrationType"
+                      required
+                    >
+                      <option value="">Choose one</option>
+                      <option value="a vibrant Caribbean carnival celebration">
+                        General Caribbean Carnival
+                      </option>
+                      <option value="Trinidad Carnival">
+                        Trinidad Carnival
+                      </option>
+                      <option value="Jamaica Carnival">Jamaica Carnival</option>
+                      <option value="Barbados Crop Over">Crop Over</option>
+                      <option value="Bahamian Junkanoo">Junkanoo</option>
+                      <option value="Haitian Kanaval">Haitian Kanaval</option>
+                      <option value="Dominican Carnival">
+                        Dominican Carnival
+                      </option>
+                      <option value="Puerto Rican carnival festivities">
+                        Puerto Rican Carnival
+                      </option>
+                      <option value="Cuban carnival festivities">
+                        Cuban Carnival
+                      </option>
+                      <option value="Saint Lucia Carnival">
+                        Saint Lucia Carnival
+                      </option>
+                      <option value="Grenada Spicemas">Spicemas</option>
+                      <option value="Antigua Carnival">Antigua Carnival</option>
+                      <option value="Vincy Mas">Vincy Mas</option>
+                      <option value="Saint Kitts Sugar Mas">Sugar Mas</option>
+                      <option value="a colorful Caribbean cultural festival">
+                        Cultural Festival
+                      </option>
+                      <option value="an elegant Caribbean heritage celebration">
+                        Heritage Celebration
+                      </option>
+                      <option value="a tropical island music festival">
+                        Island Music Festival
+                      </option>
+                      <option value="a Caribbean beach celebration">
+                        Beach Celebration
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="scene-context">Scene Context</label>
+
+                    <select
+                      id="scene-context"
+                      name="sceneContext"
+                      data-field-key="sceneContext"
+                    >
+                      <option value="">Choose one</option>
+                      <option value="performing in a lively street parade">
+                        Street Parade
+                      </option>
+                      <option value="dancing on a grand festival stage">
+                        Festival Stage
+                      </option>
+                      <option value="posing for a luxury carnival editorial">
+                        Luxury Editorial
+                      </option>
+                      <option value="celebrating on a tropical beach">
+                        Beach Celebration
+                      </option>
+                      <option value="walking through a colorful Caribbean town">
+                        Island Town
+                      </option>
+                      <option value="enjoying an upscale tropical resort">
+                        Luxury Resort
+                      </option>
+                      <option
+                        value="performing beside a decorated carnival float"
+                      >
+                        Carnival Float
+                      </option>
+                      <option value="leading a joyful procession">
+                        Festival Procession
+                      </option>
+                      <option
+                        value="posing in a cinematic fantasy island setting"
+                      >
+                        Fantasy Island
+                      </option>
+                      <option value="celebrating at sunset beside the sea">
+                        Sunset Celebration
+                      </option>
+                      <option
+                        value="posing in a professional studio with Caribbean-inspired styling"
+                      >
+                        Studio Scene
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="cultural-direction">Cultural Direction</label>
+
+                    <select
+                      id="cultural-direction"
+                      name="culturalDirection"
+                      data-field-key="culturalDirection"
+                    >
+                      <option value="">Choose one</option>
+                      <option
+                        value="with a modern Caribbean-inspired creative direction"
+                      >
+                        Modern Caribbean-Inspired
+                      </option>
+                      <option
+                        value="with culturally respectful heritage-inspired details"
+                      >
+                        Heritage-Inspired
+                      </option>
+                      <option
+                        value="with high-fashion Caribbean carnival styling"
+                      >
+                        High-Fashion Carnival
+                      </option>
+                      <option value="with joyful community celebration energy">
+                        Community Celebration
+                      </option>
+                      <option value="with luxurious tropical fantasy styling">
+                        Tropical Fantasy
+                      </option>
+                      <option
+                        value="with authentic festival atmosphere and region-specific visual details"
+                      >
+                        Festival-Focused
+                      </option>
+                      <option value="with elegant Caribbean resort styling">
+                        Resort Luxury
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field full-width">
+                    <label for="theme-custom-details">
+                      Custom Caribbean Theme Details
+                    </label>
+
+                    <textarea
+                      id="theme-custom-details"
+                      name="themeCustomDetails"
+                      data-field-key="themeCustomDetails"
+                      rows="3"
+                      maxlength="350"
+                      placeholder="Add a specific island, celebration, tradition, or scene detail."
+                    ></textarea>
+                  </div>
+                </div>
+              </section>
+
+              <section
+                class="category-panel"
+                id="clothing-panel"
+                data-category="clothing"
+                aria-labelledby="clothing-heading"
+                hidden
+              >
+                <div class="category-header">
+                  <div>
+                    <p class="category-number">04</p>
+                    <h2 id="clothing-heading">Clothing &amp; Styling</h2>
+                    <p>
+                      Choose the main outfit direction and decorative fashion
+                      details.
+                    </p>
+                  </div>
+
+                  <div class="category-header-actions">
+                    <button
+                      type="button"
+                      class="icon-button lock-category-button"
+                      data-lock-category="clothing"
+                      aria-pressed="false"
+                    >
+                      Lock
+                    </button>
+
+                    <button
+                      type="button"
+                      class="text-button clear-category-button"
+                      data-clear-category="clothing"
+                    >
+                      Clear Category
+                    </button>
+                  </div>
+                </div>
+
+                <div class="field-grid">
+                  <div class="form-field">
+                    <label for="outfit-category">
+                      Outfit Category
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <select
+                      id="outfit-category"
+                      name="outfitCategory"
+                      data-field-key="outfitCategory"
+                      required
+                    >
+                      <option value="">Choose one</option>
+                      <option value="an elaborate feathered carnival costume">
+                        Carnival Costume
+                      </option>
+                      <option value="a modern Caribbean-inspired fashion look">
+                        Caribbean Fashion
+                      </option>
+                      <option value="elegant culturally inspired formalwear">
+                        Traditional-Inspired Formalwear
+                      </option>
+                      <option value="luxurious tropical resort wear">
+                        Resort Wear
+                      </option>
+                      <option value="a glamorous tropical swimsuit ensemble">
+                        Swimwear
+                      </option>
+                      <option value="bold Caribbean street fashion">
+                        Streetwear
+                      </option>
+                      <option value="a dramatic luxury evening gown">
+                        Formal Gown
+                      </option>
+                      <option value="a high-fashion editorial outfit">
+                        Editorial Fashion
+                      </option>
+                      <option value="an imaginative tropical fantasy costume">
+                        Fantasy Costume
+                      </option>
+                      <option value="a bright festival performance outfit">
+                        Festival Performance Look
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="outfit-silhouette">Outfit Silhouette</label>
+
+                    <select
+                      id="outfit-silhouette"
+                      name="outfitSilhouette"
+                      data-field-key="outfitSilhouette"
+                    >
+                      <option value="">Choose one</option>
+                      <option value="a fitted sculpted silhouette">
+                        Fitted and Sculpted
+                      </option>
+                      <option value="a flowing dramatic silhouette">
+                        Flowing and Dramatic
+                      </option>
+                      <option value="a structured high-fashion silhouette">
+                        Structured Editorial
+                      </option>
+                      <option value="a two-piece embellished silhouette">
+                        Two-Piece Embellished
+                      </option>
+                      <option value="a sweeping cape and bodysuit silhouette">
+                        Cape and Bodysuit
+                      </option>
+                      <option value="a layered feathered silhouette">
+                        Layered Feathers
+                      </option>
+                      <option value="a sleek minimalist silhouette">
+                        Sleek Minimalist
+                      </option>
+                      <option value="a voluminous fantasy silhouette">
+                        Voluminous Fantasy
+                      </option>
+                    </select>
+                  </div>
+
+                  <fieldset class="form-field full-width">
+                    <legend>Costume and Fabric Details</legend>
+
+                    <div
+                      class="chip-group"
+                      data-multi-select="true"
+                      data-max-selections="5"
+                      aria-describedby="costume-details-help"
+                    >
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="large flowing feathers"
+                      >
+                        Flowing Feathers
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="intricate beadwork"
+                      >
+                        Intricate Beadwork
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="sparkling rhinestones"
+                      >
+                        Rhinestones
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="faceted gemstones"
+                      >
+                        Gemstones
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="metallic gold embroidery"
+                      >
+                        Gold Embroidery
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="sequined fabric"
+                      >
+                        Sequins
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="flowing chiffon"
+                      >
+                        Chiffon
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="luxurious satin"
+                      >
+                        Satin
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="handwoven textile accents"
+                      >
+                        Woven Accents
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="tropical floral appliqués"
+                      >
+                        Floral Appliques
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="shell and pearl details"
+                      >
+                        Shells and Pearls
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="dramatic fringe that moves with the body"
+                      >
+                        Dramatic Fringe
+                      </button>
+                    </div>
+
+                    <input
+                      type="hidden"
+                      id="costume-details"
+                      name="costumeDetails"
+                      data-field-key="costumeDetails"
+                    />
+
+                    <p class="field-help" id="costume-details-help">
+                      Choose up to five.
+                    </p>
+                  </fieldset>
+
+                  <div class="form-field">
+                    <label for="shoe-style">Shoes</label>
+
+                    <select
+                      id="shoe-style"
+                      name="shoeStyle"
+                      data-field-key="shoeStyle"
+                    >
+                      <option value="">Choose one</option>
+                      <option value="bare feet suitable for dancing">
+                        Barefoot
+                      </option>
+                      <option value="metallic strappy heels">
+                        Metallic Heels
+                      </option>
+                      <option value="jeweled high heels">Jeweled Heels</option>
+                      <option value="gold gladiator sandals">
+                        Gladiator Sandals
+                      </option>
+                      <option value="embellished flat sandals">
+                        Embellished Sandals
+                      </option>
+                      <option value="tall carnival boots">
+                        Carnival Boots
+                      </option>
+                      <option value="fashion-forward platform heels">
+                        Platform Heels
+                      </option>
+                      <option value="comfortable decorated dance sneakers">
+                        Decorated Sneakers
+                      </option>
+                    </select>
+                  </div>
+
+                  <fieldset class="form-field">
+                    <legend>Jewelry</legend>
+
+                    <div
+                      class="chip-group"
+                      data-multi-select="true"
+                      data-max-selections="4"
+                      aria-describedby="jewelry-help"
+                    >
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="large gold hoop earrings"
+                      >
+                        Gold Hoops
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="dramatic chandelier earrings"
+                      >
+                        Chandelier Earrings
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="layered gold necklaces"
+                      >
+                        Layered Necklaces
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="a jeweled statement necklace"
+                      >
+                        Statement Necklace
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="stacked gold bangles"
+                      >
+                        Gold Bangles
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="jeweled arm cuffs"
+                      >
+                        Arm Cuffs
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="delicate pearl jewelry"
+                      >
+                        Pearls
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="colorful gemstone jewelry"
+                      >
+                        Gemstone Jewelry
+                      </button>
+                    </div>
+
+                    <input
+                      type="hidden"
+                      id="jewelry"
+                      name="jewelry"
+                      data-field-key="jewelry"
+                    />
+
+                    <p class="field-help" id="jewelry-help">
+                      Choose up to four.
+                    </p>
+                  </fieldset>
+
+                  <div class="form-field">
+                    <label for="prop">Accessory or Prop</label>
+
+                    <select id="prop" name="prop" data-field-key="prop">
+                      <option value="">None</option>
+                      <option value="a large feathered carnival fan">
+                        Feathered Fan
+                      </option>
+                      <option value="a colorful parasol">
+                        Colorful Parasol
+                      </option>
+                      <option value="a Caribbean flag flowing in the breeze">
+                        Caribbean Flag
+                      </option>
+                      <option value="a decorated steelpan instrument">
+                        Steelpan
+                      </option>
+                      <option value="a festival drum">Festival Drum</option>
+                      <option value="a tropical flower bouquet">
+                        Tropical Flowers
+                      </option>
+                      <option
+                        value="a jeweled masquerade mask held in one hand"
+                      >
+                        Masquerade Mask
+                      </option>
+                      <option value="flowing ribbons">Flowing Ribbons</option>
+                      <option value="a sparkling carnival staff">
+                        Carnival Staff
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field full-width">
+                    <label for="clothing-custom-details">
+                      Custom Clothing or Styling Details
+                    </label>
+
+                    <textarea
+                      id="clothing-custom-details"
+                      name="clothingCustomDetails"
+                      data-field-key="clothingCustomDetails"
+                      rows="3"
+                      maxlength="350"
+                      placeholder="Add colors, fabrics, costume details, or accessories."
+                    ></textarea>
+                  </div>
+                </div>
+              </section>
+
+              <section
+                class="category-panel"
+                id="pose-panel"
+                data-category="pose"
+                aria-labelledby="pose-heading"
+                hidden
+              >
+                <div class="category-header">
+                  <div>
+                    <p class="category-number">05</p>
+                    <h2 id="pose-heading">Pose &amp; Expression</h2>
+                    <p>
+                      Set the characters’ movement, emotion, and interaction.
+                    </p>
+                  </div>
+
+                  <div class="category-header-actions">
+                    <button
+                      type="button"
+                      class="icon-button lock-category-button"
+                      data-lock-category="pose"
+                      aria-pressed="false"
+                    >
+                      Lock
+                    </button>
+
+                    <button
+                      type="button"
+                      class="text-button clear-category-button"
+                      data-clear-category="pose"
+                    >
+                      Clear Category
+                    </button>
+                  </div>
+                </div>
+
+                <div class="field-grid">
+                  <div class="form-field">
+                    <label for="pose">Pose</label>
+
+                    <select id="pose" name="pose" data-field-key="pose">
+                      <option value="">Choose one</option>
+                      <option
+                        value="standing confidently with one hand on her hip"
+                      >
+                        Confident Hand-on-Hip
+                      </option>
+                      <option value="walking powerfully toward the camera">
+                        Power Walk
+                      </option>
+                      <option value="mid-dance with flowing movement">
+                        Mid-Dance
+                      </option>
+                      <option
+                        value="spinning with fabric and feathers in motion"
+                      >
+                        Spinning
+                      </option>
+                      <option value="raising both arms in joyful celebration">
+                        Arms Raised
+                      </option>
+                      <option value="looking back over one shoulder">
+                        Over-the-Shoulder
+                      </option>
+                      <option value="posing with an elegant extended leg">
+                        Editorial Leg Pose
+                      </option>
+                      <option value="leaning forward with playful confidence">
+                        Playful Lean
+                      </option>
+                      <option
+                        value="standing tall in a commanding front-facing pose"
+                      >
+                        Commanding Front Pose
+                      </option>
+                      <option
+                        value="captured in a natural candid celebration moment"
+                      >
+                        Candid Celebration
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="movement">Movement</label>
+
+                    <select
+                      id="movement"
+                      name="movement"
+                      data-field-key="movement"
+                    >
+                      <option value="">Choose one</option>
+                      <option value="with graceful controlled movement">
+                        Graceful
+                      </option>
+                      <option value="with energetic carnival dancing">
+                        High-Energy Dancing
+                      </option>
+                      <option value="with rhythmic hip movement">
+                        Rhythmic Movement
+                      </option>
+                      <option value="with powerful forward motion">
+                        Powerful Motion
+                      </option>
+                      <option value="with joyful jumping and celebration">
+                        Jumping Celebration
+                      </option>
+                      <option
+                        value="with flowing feathers and fabric caught in the breeze"
+                      >
+                        Wind-Swept Motion
+                      </option>
+                      <option value="with a calm, still editorial presence">
+                        Still Editorial
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="facial-expression">Facial Expression</label>
+
+                    <select
+                      id="facial-expression"
+                      name="facialExpression"
+                      data-field-key="facialExpression"
+                    >
+                      <option value="">Choose one</option>
+                      <option value="a radiant joyful smile">
+                        Radiant Smile
+                      </option>
+                      <option value="a confident commanding expression">
+                        Confident
+                      </option>
+                      <option value="a playful celebratory expression">
+                        Playful
+                      </option>
+                      <option value="a fierce glamorous expression">
+                        Fierce Glam
+                      </option>
+                      <option value="a peaceful proud expression">
+                        Peaceful and Proud
+                      </option>
+                      <option value="an excited festival expression">
+                        Excited
+                      </option>
+                      <option value="a soft elegant smile">Soft Smile</option>
+                      <option value="a powerful serious editorial expression">
+                        Serious Editorial
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="eye-direction">Eye Direction</label>
+
+                    <select
+                      id="eye-direction"
+                      name="eyeDirection"
+                      data-field-key="eyeDirection"
+                    >
+                      <option value="">Choose one</option>
+                      <option value="making direct eye contact with the camera">
+                        Direct Eye Contact
+                      </option>
+                      <option value="looking joyfully toward the crowd">
+                        Looking at Crowd
+                      </option>
+                      <option value="looking toward the horizon">
+                        Looking at Horizon
+                      </option>
+                      <option value="looking at one another naturally">
+                        Looking at Each Other
+                      </option>
+                      <option value="looking slightly away from the camera">
+                        Looking Away
+                      </option>
+                      <option value="with eyes gently closed in the moment">
+                        Eyes Closed
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="interaction">Character Interaction</label>
+
+                    <select
+                      id="interaction"
+                      name="interaction"
+                      data-field-key="interaction"
+                    >
+                      <option value="">Choose one</option>
+                      <option value="interacting like close friends">
+                        Close Friends
+                      </option>
+                      <option
+                        value="celebrating together as a coordinated carnival group"
+                      >
+                        Carnival Group
+                      </option>
+                      <option value="dancing together in synchronized movement">
+                        Synchronized Dance
+                      </option>
+                      <option value="laughing together in a candid moment">
+                        Laughing Together
+                      </option>
+                      <option
+                        value="standing independently in a balanced group composition"
+                      >
+                        Independent Group Pose
+                      </option>
+                      <option
+                        value="supporting one another with warm sisterhood energy"
+                      >
+                        Sisterhood Energy
+                      </option>
+                      <option
+                        value="performing together as a professional dance troupe"
+                      >
+                        Dance Troupe
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="energy-level">Energy Level</label>
+
+                    <select
+                      id="energy-level"
+                      name="energyLevel"
+                      data-field-key="energyLevel"
+                    >
+                      <option value="">Choose one</option>
+                      <option value="calm and elegant energy">
+                        Calm and Elegant
+                      </option>
+                      <option value="warm joyful energy">
+                        Warm and Joyful
+                      </option>
+                      <option value="bold celebratory energy">
+                        Bold Celebration
+                      </option>
+                      <option value="high-energy festival excitement">
+                        High Energy
+                      </option>
+                      <option value="fierce commanding energy">
+                        Fierce and Commanding
+                      </option>
+                      <option value="luxurious editorial confidence">
+                        Luxury Confidence
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field full-width">
+                    <label for="pose-custom-details">
+                      Custom Pose or Expression Details
+                    </label>
+
+                    <textarea
+                      id="pose-custom-details"
+                      name="poseCustomDetails"
+                      data-field-key="poseCustomDetails"
+                      rows="3"
+                      maxlength="300"
+                      placeholder="Add any specific pose, interaction, or expression."
+                    ></textarea>
+                  </div>
+                </div>
+              </section>
+
+              <section
+                class="category-panel"
+                id="background-panel"
+                data-category="background"
+                aria-labelledby="background-heading"
+                hidden
+              >
+                <div class="category-header">
+                  <div>
+                    <p class="category-number">06</p>
+                    <h2 id="background-heading">Background</h2>
+                    <p>
+                      Build the location, atmosphere, crowd, and environmental
+                      details.
+                    </p>
+                  </div>
+
+                  <div class="category-header-actions">
+                    <button
+                      type="button"
+                      class="icon-button lock-category-button"
+                      data-lock-category="background"
+                      aria-pressed="false"
+                    >
+                      Lock
+                    </button>
+
+                    <button
+                      type="button"
+                      class="text-button clear-category-button"
+                      data-clear-category="background"
+                    >
+                      Clear Category
+                    </button>
+                  </div>
+                </div>
+
+                <div class="field-grid">
+                  <div class="form-field">
+                    <label for="background-location">
+                      Background Location
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <select
+                      id="background-location"
+                      name="backgroundLocation"
+                      data-field-key="backgroundLocation"
+                      required
+                    >
+                      <option value="">Choose one</option>
+                      <option
+                        value="a lively Caribbean carnival street filled with colorful decorations"
+                      >
+                        Carnival Street
+                      </option>
+                      <option
+                        value="a tropical white-sand beach with turquoise water"
+                      >
+                        Tropical Beach
+                      </option>
+                      <option value="a colorful historic Caribbean town">
+                        Colorful Island Town
+                      </option>
+                      <option value="a luxurious open-air island resort">
+                        Luxury Resort
+                      </option>
+                      <option
+                        value="a grand festival stage with dramatic lighting"
+                      >
+                        Festival Stage
+                      </option>
+                      <option
+                        value="a bustling parade route lined with spectators"
+                      >
+                        Parade Route
+                      </option>
+                      <option
+                        value="a decorated carnival float surrounded by performers"
+                      >
+                        Carnival Float
+                      </option>
+                      <option
+                        value="a lush tropical garden filled with flowers and palms"
+                      >
+                        Tropical Garden
+                      </option>
+                      <option
+                        value="a dramatic cliffside overlooking the Caribbean Sea"
+                      >
+                        Seaside Cliff
+                      </option>
+                      <option
+                        value="a cinematic fantasy island with glowing tropical scenery"
+                      >
+                        Fantasy Island
+                      </option>
+                      <option
+                        value="a polished studio set with Caribbean-inspired decor"
+                      >
+                        Studio Set
+                      </option>
+                      <option
+                        value="a rooftop overlooking a vibrant Caribbean city"
+                      >
+                        City Rooftop
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="crowd-presence">Crowd Presence</label>
+
+                    <select
+                      id="crowd-presence"
+                      name="crowdPresence"
+                      data-field-key="crowdPresence"
+                    >
+                      <option value="">Choose one</option>
+                      <option
+                        value="with no crowd so the main characters remain the only focus"
+                      >
+                        No Crowd
+                      </option>
+                      <option
+                        value="with a softly blurred crowd in the distance"
+                      >
+                        Soft Background Crowd
+                      </option>
+                      <option
+                        value="with a joyful festival crowd cheering nearby"
+                      >
+                        Cheering Crowd
+                      </option>
+                      <option
+                        value="with other costumed performers filling the background"
+                      >
+                        Costumed Performers
+                      </option>
+                      <option value="with a large energetic parade crowd">
+                        Large Parade Crowd
+                      </option>
+                      <option
+                        value="with a small group of musicians and dancers nearby"
+                      >
+                        Musicians and Dancers
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="time-of-day">Time of Day</label>
+
+                    <select
+                      id="time-of-day"
+                      name="timeOfDay"
+                      data-field-key="timeOfDay"
+                    >
+                      <option value="">Choose one</option>
+                      <option value="in bright tropical morning light">
+                        Morning
+                      </option>
+                      <option value="under vibrant midday sunlight">
+                        Midday
+                      </option>
+                      <option value="during warm golden hour">
+                        Golden Hour
+                      </option>
+                      <option value="at a dramatic Caribbean sunset">
+                        Sunset
+                      </option>
+                      <option value="during blue hour with glowing city lights">
+                        Blue Hour
+                      </option>
+                      <option value="at night beneath colorful festival lights">
+                        Festival Night
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="weather">Weather</label>
+
+                    <select
+                      id="weather"
+                      name="weather"
+                      data-field-key="weather"
+                    >
+                      <option value="">Choose one</option>
+                      <option value="under clear sunny skies">
+                        Clear and Sunny
+                      </option>
+                      <option value="with soft tropical clouds">
+                        Soft Tropical Clouds
+                      </option>
+                      <option
+                        value="with a warm ocean breeze moving the fabric and feathers"
+                      >
+                        Ocean Breeze
+                      </option>
+                      <option
+                        value="after a light tropical rain with reflective streets"
+                      >
+                        After Tropical Rain
+                      </option>
+                      <option
+                        value="under dramatic storm clouds with cinematic light breaking through"
+                      >
+                        Dramatic Clouds
+                      </option>
+                      <option value="with glowing mist in the distance">
+                        Glowing Mist
+                      </option>
+                    </select>
+                  </div>
+
+                  <fieldset class="form-field full-width">
+                    <legend>Atmospheric Details</legend>
+
+                    <div
+                      class="chip-group"
+                      data-multi-select="true"
+                      data-max-selections="4"
+                      aria-describedby="atmosphere-help"
+                    >
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="colorful confetti floating through the air"
+                      >
+                        Confetti
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="sparkling glitter catching the light"
+                      >
+                        Glitter
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="soft tropical flower petals drifting through the scene"
+                      >
+                        Flower Petals
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="decorative festival banners"
+                      >
+                        Festival Banners
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="lush palm leaves framing the scene"
+                      >
+                        Palm Leaves
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="gentle ocean spray"
+                      >
+                        Ocean Spray
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="soft smoke effects behind the performers"
+                      >
+                        Soft Smoke
+                      </button>
+
+                      <button
+                        type="button"
+                        class="option-chip"
+                        data-value="warm glowing particles"
+                      >
+                        Glowing Particles
+                      </button>
+                    </div>
+
+                    <input
+                      type="hidden"
+                      id="atmospheric-details"
+                      name="atmosphericDetails"
+                      data-field-key="atmosphericDetails"
+                    />
+
+                    <p class="field-help" id="atmosphere-help">
+                      Choose up to four.
+                    </p>
+                  </fieldset>
+
+                  <div class="form-field full-width">
+                    <label for="background-custom-details">
+                      Custom Background Details
+                    </label>
+
+                    <textarea
+                      id="background-custom-details"
+                      name="backgroundCustomDetails"
+                      data-field-key="backgroundCustomDetails"
+                      rows="3"
+                      maxlength="350"
+                      placeholder="Add specific scenery, architecture, weather, or crowd details."
+                    ></textarea>
+                  </div>
+                </div>
+              </section>
+
+              <section
+                class="category-panel"
+                id="style-panel"
+                data-category="style"
+                aria-labelledby="style-heading"
+                hidden
+              >
+                <div class="category-header">
+                  <div>
+                    <p class="category-number">07</p>
+                    <h2 id="style-heading">Image Style</h2>
+                    <p>
+                      Choose the visual style, mood, color direction, and
+                      lighting.
+                    </p>
+                  </div>
+
+                  <div class="category-header-actions">
+                    <button
+                      type="button"
+                      class="icon-button lock-category-button"
+                      data-lock-category="style"
+                      aria-pressed="false"
+                    >
+                      Lock
+                    </button>
+
+                    <button
+                      type="button"
+                      class="text-button clear-category-button"
+                      data-clear-category="style"
+                    >
+                      Clear Category
+                    </button>
+                  </div>
+                </div>
+
+                <div class="field-grid">
+                  <div class="form-field">
+                    <label for="art-style">
+                      Art Style
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <select
+                      id="art-style"
+                      name="artStyle"
+                      data-field-key="artStyle"
+                      required
+                    >
+                      <option value="">Choose one</option>
+                      <option value="cinematic photorealism">
+                        Cinematic Realism
+                      </option>
+                      <option value="luxury fashion editorial photography">
+                        Luxury Editorial
+                      </option>
+                      <option value="high-end fashion photography">
+                        Fashion Photography
+                      </option>
+                      <option value="fantasy realism">Fantasy Realism</option>
+                      <option value="detailed digital painting">
+                        Digital Painting
+                      </option>
+                      <option value="polished 3D character art">
+                        3D Character Art
+                      </option>
+                      <option value="elegant watercolor illustration">
+                        Watercolor
+                      </option>
+                      <option value="bold fashion illustration">
+                        Fashion Illustration
+                      </option>
+                      <option value="vibrant anime-inspired illustration">
+                        Anime-Inspired
+                      </option>
+                      <option
+                        value="retro Caribbean travel-poster illustration"
+                      >
+                        Vintage Travel Poster
+                      </option>
+                      <option value="Art Nouveau-inspired illustration">
+                        Art Nouveau
+                      </option>
+                      <option value="vibrant pop-art illustration">
+                        Pop Art
+                      </option>
+                      <option value="dreamlike surrealism">Surrealism</option>
+                      <option value="cinematic concept art">
+                        Cinematic Concept Art
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="realism-level">Realism Level</label>
+
+                    <select
+                      id="realism-level"
+                      name="realismLevel"
+                      data-field-key="realismLevel"
+                    >
+                      <option value="">Choose one</option>
+                      <option
+                        value="with highly realistic human features and materials"
+                      >
+                        Highly Realistic
+                      </option>
+                      <option value="with polished editorial realism">
+                        Editorial Realism
+                      </option>
+                      <option
+                        value="with realistic subjects and lightly stylized details"
+                      >
+                        Lightly Stylized
+                      </option>
+                      <option
+                        value="with a balanced blend of realism and fantasy"
+                      >
+                        Realistic Fantasy
+                      </option>
+                      <option value="with fully illustrated artistic rendering">
+                        Fully Illustrated
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="mood">Mood</label>
+
+                    <select id="mood" name="mood" data-field-key="mood">
+                      <option value="">Choose one</option>
+                      <option value="joyful, festive, and uplifting">
+                        Joyful Celebration
+                      </option>
+                      <option value="bold, powerful, and commanding">
+                        Bold and Powerful
+                      </option>
+                      <option value="luxurious, polished, and glamorous">
+                        Luxury Glam
+                      </option>
+                      <option value="warm, radiant, and welcoming">
+                        Warm and Radiant
+                      </option>
+                      <option value="energetic, playful, and exciting">
+                        Playful Energy
+                      </option>
+                      <option value="dreamlike, magical, and enchanting">
+                        Dreamlike Fantasy
+                      </option>
+                      <option value="elegant, graceful, and refined">
+                        Elegant and Refined
+                      </option>
+                      <option value="dramatic, cinematic, and intense">
+                        Dramatic Cinematic
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="color-palette">Color Palette</label>
+
+                    <select
+                      id="color-palette"
+                      name="colorPalette"
+                      data-field-key="colorPalette"
+                    >
+                      <option value="">Choose one</option>
+                      <option
+                        value="a saturated orange, red, turquoise, and gold color palette"
+                      >
+                        Carnival Fire and Turquoise
+                      </option>
+                      <option
+                        value="royal blue, gold, black, and subtle white accents"
+                      >
+                        Royal Blue and Gold
+                      </option>
+                      <option
+                        value="turquoise, coral, sunshine yellow, and white"
+                      >
+                        Tropical Brights
+                      </option>
+                      <option value="emerald green, gold, and deep black">
+                        Emerald and Gold
+                      </option>
+                      <option value="hot pink, orange, purple, and gold">
+                        Sunset Carnival
+                      </option>
+                      <option value="red, black, gold, and white">
+                        Red and Black
+                      </option>
+                      <option value="aqua blue, seafoam, sand, and pearl white">
+                        Coastal Luxe
+                      </option>
+                      <option value="jewel tones with rich gold accents">
+                        Jewel Tones
+                      </option>
+                      <option
+                        value="soft pastel tropical colors with gold accents"
+                      >
+                        Pastel Tropical
+                      </option>
+                      <option value="white, champagne gold, and warm neutrals">
+                        White and Gold
+                      </option>
+                      <option value="deep purple, silver, and gold">
+                        Purple, Silver, and Gold
+                      </option>
+                      <option
+                        value="bold multicolored Caribbean festival tones"
+                      >
+                        Full Carnival Color
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="lighting">Lighting</label>
+
+                    <select
+                      id="lighting"
+                      name="lighting"
+                      data-field-key="lighting"
+                    >
+                      <option value="">Choose one</option>
+                      <option
+                        value="warm cinematic sunlight with dimensional highlights"
+                      >
+                        Warm Cinematic Sunlight
+                      </option>
+                      <option value="soft flattering studio lighting">
+                        Soft Studio Light
+                      </option>
+                      <option value="dramatic golden-hour backlighting">
+                        Golden-Hour Backlight
+                      </option>
+                      <option
+                        value="bright tropical daylight with crisp detail"
+                      >
+                        Tropical Daylight
+                      </option>
+                      <option
+                        value="colorful festival lighting with glowing highlights"
+                      >
+                        Festival Lights
+                      </option>
+                      <option
+                        value="dramatic spotlighting with deep dimensional shadows"
+                      >
+                        Dramatic Spotlight
+                      </option>
+                      <option value="soft diffused light with a radiant glow">
+                        Soft Radiant Glow
+                      </option>
+                      <option
+                        value="moody cinematic lighting with warm rim light"
+                      >
+                        Moody Rim Light
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="depth-style">Depth and Focus</label>
+
+                    <select
+                      id="depth-style"
+                      name="depthStyle"
+                      data-field-key="depthStyle"
+                    >
+                      <option value="">Choose one</option>
+                      <option
+                        value="a sharp main subject with a softly blurred background"
+                      >
+                        Soft Background Blur
+                      </option>
+                      <option
+                        value="deep focus showing detailed foreground, middle ground, and background"
+                      >
+                        Deep Focus
+                      </option>
+                      <option
+                        value="a strong foreground subject with layered cinematic depth"
+                      >
+                        Layered Cinematic Depth
+                      </option>
+                      <option
+                        value="a clean editorial background with minimal distractions"
+                      >
+                        Clean Editorial Focus
+                      </option>
+                      <option
+                        value="dreamlike depth with soft atmospheric haze"
+                      >
+                        Dreamlike Atmospheric Depth
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field full-width">
+                    <label for="style-custom-details">
+                      Custom Style Details
+                    </label>
+
+                    <textarea
+                      id="style-custom-details"
+                      name="styleCustomDetails"
+                      data-field-key="styleCustomDetails"
+                      rows="3"
+                      maxlength="350"
+                      placeholder="Add any specific visual style, mood, lighting, or color instructions."
+                    ></textarea>
+                  </div>
+                </div>
+              </section>
+
+              <section
+                class="category-panel"
+                id="final-details-panel"
+                data-category="finalDetails"
+                aria-labelledby="final-details-heading"
+                hidden
+              >
+                <div class="category-header">
+                  <div>
+                    <p class="category-number">08</p>
+                    <h2 id="final-details-heading">Final Details</h2>
+                    <p>
+                      Finish the camera view, image format, and rendering
+                      quality.
+                    </p>
+                  </div>
+
+                  <div class="category-header-actions">
+                    <button
+                      type="button"
+                      class="icon-button lock-category-button"
+                      data-lock-category="finalDetails"
+                      aria-pressed="false"
+                    >
+                      Lock
+                    </button>
+
+                    <button
+                      type="button"
+                      class="text-button clear-category-button"
+                      data-clear-category="finalDetails"
+                    >
+                      Clear Category
+                    </button>
+                  </div>
+                </div>
+
+                <div class="field-grid">
+                  <div class="form-field">
+                    <label for="shot-type">
+                      Shot Type
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <select
+                      id="shot-type"
+                      name="shotType"
+                      data-field-key="shotType"
+                      required
+                    >
+                      <option value="">Choose one</option>
+                      <option value="a close-up portrait">Close-Up</option>
+                      <option value="a chest-up portrait">Chest-Up</option>
+                      <option value="a waist-up composition">Waist-Up</option>
+                      <option value="a three-quarter-body composition">
+                        Three-Quarter Body
+                      </option>
+                      <option value="a full-body composition">Full Body</option>
+                      <option value="a wide environmental composition">
+                        Wide Scene
+                      </option>
+                      <option value="a cinematic group portrait">
+                        Group Portrait
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="camera-angle">Camera Angle</label>
+
+                    <select
+                      id="camera-angle"
+                      name="cameraAngle"
+                      data-field-key="cameraAngle"
+                    >
+                      <option value="">Choose one</option>
+                      <option value="photographed at eye level">
+                        Eye Level
+                      </option>
+                      <option
+                        value="photographed from a slightly low angle for a powerful presence"
+                      >
+                        Low Angle
+                      </option>
+                      <option
+                        value="photographed from a slightly elevated angle"
+                      >
+                        High Angle
+                      </option>
+                      <option
+                        value="photographed from a dynamic three-quarter angle"
+                      >
+                        Three-Quarter Angle
+                      </option>
+                      <option
+                        value="photographed straight on with strong symmetry"
+                      >
+                        Straight-On Symmetry
+                      </option>
+                      <option value="captured from a candid side angle">
+                        Candid Side Angle
+                      </option>
+                      <option
+                        value="captured with a dramatic wide-angle perspective"
+                      >
+                        Wide-Angle Perspective
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="composition">Composition</label>
+
+                    <select
+                      id="composition"
+                      name="composition"
+                      data-field-key="composition"
+                    >
+                      <option value="">Choose one</option>
+                      <option
+                        value="centered with a strong dominant focal point"
+                      >
+                        Centered Focal Point
+                      </option>
+                      <option value="balanced using the rule of thirds">
+                        Rule of Thirds
+                      </option>
+                      <option value="symmetrical and fashion-editorial">
+                        Symmetrical Editorial
+                      </option>
+                      <option
+                        value="dynamic and diagonal with visible movement"
+                      >
+                        Dynamic Diagonal
+                      </option>
+                      <option
+                        value="layered with clear foreground, middle ground, and background"
+                      >
+                        Layered Depth
+                      </option>
+                      <option
+                        value="wide and cinematic with the environment supporting the subject"
+                      >
+                        Wide Cinematic
+                      </option>
+                      <option
+                        value="closely framed for an intimate character-focused composition"
+                      >
+                        Intimate Framing
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="orientation">
+                      Image Orientation
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <select
+                      id="orientation"
+                      name="orientation"
+                      data-field-key="orientation"
+                      required
+                    >
+                      <option value="">Choose one</option>
+                      <option value="vertical portrait orientation">
+                        Portrait
+                      </option>
+                      <option value="horizontal landscape orientation">
+                        Landscape
+                      </option>
+                      <option value="square orientation">Square</option>
+                      <option value="tall social-media portrait orientation">
+                        Tall Social Portrait
+                      </option>
+                      <option value="wide cinematic orientation">
+                        Wide Cinematic
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="image-quality">Image Quality</label>
+
+                    <select
+                      id="image-quality"
+                      name="imageQuality"
+                      data-field-key="imageQuality"
+                    >
+                      <option value="">Choose one</option>
+                      <option
+                        value="professionally polished with crisp detail and realistic textures"
+                      >
+                        Professional Detail
+                      </option>
+                      <option
+                        value="ultra-detailed with refined skin, fabric, feathers, and jewelry"
+                      >
+                        Ultra Detailed
+                      </option>
+                      <option
+                        value="high-end editorial quality with clean commercial finishing"
+                      >
+                        Editorial Quality
+                      </option>
+                      <option
+                        value="cinematic quality with believable anatomy and dimensional rendering"
+                      >
+                        Cinematic Quality
+                      </option>
+                      <option
+                        value="museum-quality illustration with refined artistic detail"
+                      >
+                        Fine-Art Quality
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="rendering-priority">Rendering Priority</label>
+
+                    <select
+                      id="rendering-priority"
+                      name="renderingPriority"
+                      data-field-key="renderingPriority"
+                    >
+                      <option value="">Choose one</option>
+                      <option
+                        value="prioritizing believable adult anatomy and natural proportions"
+                      >
+                        Accurate Anatomy
+                      </option>
+                      <option
+                        value="prioritizing realistic skin and hair texture"
+                      >
+                        Skin and Hair Detail
+                      </option>
+                      <option
+                        value="prioritizing intricate costume, feather, bead, and gemstone detail"
+                      >
+                        Costume Detail
+                      </option>
+                      <option
+                        value="prioritizing expressive faces and natural emotion"
+                      >
+                        Facial Expression
+                      </option>
+                      <option
+                        value="prioritizing movement, fabric flow, and dynamic energy"
+                      >
+                        Dynamic Movement
+                      </option>
+                      <option
+                        value="prioritizing cohesive lighting, color grading, and atmosphere"
+                      >
+                        Lighting and Atmosphere
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-field full-width">
+                    <label for="final-custom-details">
+                      Final Custom Instructions
+                    </label>
+
+                    <textarea
+                      id="final-custom-details"
+                      name="finalCustomDetails"
+                      data-field-key="finalCustomDetails"
+                      rows="4"
+                      maxlength="500"
+                      placeholder="Add any final details you want included in the prompt."
+                    ></textarea>
+                  </div>
+                </div>
+              </section>
+            </form>
+          </div>
+
+          <aside class="output-column" aria-labelledby="output-heading">
+            <div class="output-card">
+              <div class="output-header">
+                <div>
+                  <p class="output-eyebrow">Final Image Prompt</p>
+                  <h2 id="output-heading">Your Prompt</h2>
+                </div>
+
+                <span
+                  class="output-status"
+                  id="output-status"
+                  aria-live="polite"
+                >
+                  Not generated
+                </span>
+              </div>
+
+              <div
+                class="output-content empty"
+                id="prompt-output"
+                tabindex="0"
+                aria-live="polite"
+                aria-label="Generated image prompt"
+              >
+                <p class="empty-state" id="prompt-empty-state">
+                  Your polished Caribbean image prompt will appear here.
+                </p>
+              </div>
+
+              <div
+                class="quality-result"
+                id="quality-result"
+                aria-live="polite"
+                hidden
+              ></div>
+
+              <div class="output-actions">
+                <button
+                  type="button"
+                  class="button button-secondary"
+                  id="copy-prompt-btn"
+                  disabled
+                >
+                  Copy Prompt
+                </button>
+
+                <button
+                  type="button"
+                  class="button button-primary"
+                  id="generate-prompt-output-btn"
+                >
+                  Generate Prompt
+                </button>
+              </div>
+
+              <p class="update-message" id="update-needed-message" hidden>
+                You changed your selections. Generate again to update the
+                prompt.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="content-container">
+        <p>© 2026 Tropical Queen Scene Generator. All rights reserved.</p>
+
+        <p class="footer-disclaimer">
+          This generator creates Caribbean-inspired image prompts. Cultural
+          traditions should be represented respectfully and accurately.
+        </p>
+      </div>
+    </footer>
+
+    <div
+      class="toast"
+      id="toast"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+      hidden
+    >
+      <span id="toast-message"></span>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
