@@ -2787,6 +2787,58 @@
           </aside>
         </div>
       </section>
+
+
+      <section class="premium-outputs-section" id="premium-outputs" aria-labelledby="premium-outputs-heading">
+        <div class="content-container">
+          <div class="premium-section-header">
+            <p class="premium-eyebrow">Premium Output Modules</p>
+            <h2 id="premium-outputs-heading">Expand Your Tropical Queen Concept</h2>
+            <p>Generate matching music, video, marketing, and Custom GPT content from the same selections used for your image prompt.</p>
+          </div>
+
+          <div class="premium-tabs" role="tablist" aria-label="Premium output modules">
+            <button type="button" class="premium-tab active" id="suno-tab" role="tab" aria-selected="true" aria-controls="suno-panel" data-premium-target="suno-panel">Suno Music Prompt</button>
+            <button type="button" class="premium-tab" id="video-tab" role="tab" aria-selected="false" aria-controls="video-panel" data-premium-target="video-panel" tabindex="-1">Video Script</button>
+            <button type="button" class="premium-tab" id="marketing-tab" role="tab" aria-selected="false" aria-controls="marketing-panel" data-premium-target="marketing-panel" tabindex="-1">Marketing Prompt</button>
+            <button type="button" class="premium-tab" id="custom-gpt-tab" role="tab" aria-selected="false" aria-controls="custom-gpt-panel" data-premium-target="custom-gpt-panel" tabindex="-1">Custom GPT Builder</button>
+          </div>
+
+          <div class="premium-panels">
+            <section class="premium-panel active" id="suno-panel" role="tabpanel" aria-labelledby="suno-tab">
+              <div class="premium-card-header">
+                <div><p class="premium-card-label">Music Creation</p><h3>Suno AI Music Prompt</h3></div>
+                <button type="button" class="button button-secondary premium-copy-button" data-copy-premium="suno-output" disabled>Copy Suno Prompt</button>
+              </div>
+              <div class="premium-output-box empty" id="suno-output" tabindex="0" aria-live="polite">Generate your main image prompt to create the matching Suno music prompt.</div>
+            </section>
+
+            <section class="premium-panel" id="video-panel" role="tabpanel" aria-labelledby="video-tab" hidden>
+              <div class="premium-card-header">
+                <div><p class="premium-card-label">Visual Storytelling</p><h3>Video Script Prompt</h3></div>
+                <button type="button" class="button button-secondary premium-copy-button" data-copy-premium="video-output" disabled>Copy Video Script</button>
+              </div>
+              <div class="premium-output-box empty" id="video-output" tabindex="0" aria-live="polite">Generate your main image prompt to create the matching video script.</div>
+            </section>
+
+            <section class="premium-panel" id="marketing-panel" role="tabpanel" aria-labelledby="marketing-tab" hidden>
+              <div class="premium-card-header">
+                <div><p class="premium-card-label">Promotion and Sales</p><h3>Marketing Prompt</h3></div>
+                <button type="button" class="button button-secondary premium-copy-button" data-copy-premium="marketing-output" disabled>Copy Marketing Prompt</button>
+              </div>
+              <div class="premium-output-box empty" id="marketing-output" tabindex="0" aria-live="polite">Generate your main image prompt to create the matching marketing prompt.</div>
+            </section>
+
+            <section class="premium-panel" id="custom-gpt-panel" role="tabpanel" aria-labelledby="custom-gpt-tab" hidden>
+              <div class="premium-card-header">
+                <div><p class="premium-card-label">Custom Assistant Setup</p><h3>Complete Custom GPT Configuration</h3></div>
+                <button type="button" class="button button-secondary premium-copy-button" data-copy-premium="custom-gpt-output" disabled>Copy GPT Configuration</button>
+              </div>
+              <div class="premium-output-box empty" id="custom-gpt-output" tabindex="0" aria-live="polite">Generate your main image prompt to create the complete Custom GPT configuration.</div>
+            </section>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">

@@ -638,6 +638,7 @@ document.addEventListener("DOMContentLoaded", () => {
             state.hasGeneratedPrompt = true;
 
             renderPrompt(prompt);
+            generatePremiumOutputs(prompt);
             renderQualityResult(prompt);
             hideValidation();
             updateNeededMessage.hidden = true;
@@ -1064,6 +1065,7 @@ document.addEventListener("DOMContentLoaded", () => {
         hideValidation();
         updateGroupDependentControls();
         setEmptyOutput();
+        resetPremiumOutputs();
         showPanel("character-panel");
 
         showToast("Generator cleared.", "success");
@@ -1169,6 +1171,393 @@ document.addEventListener("DOMContentLoaded", () => {
             "(prefers-reduced-motion: reduce)"
         ).matches;
     }
+
+
+
+    /* Premium Output Modules */
+    const premiumTabs = Array.from(document.querySelectorAll(".premium-tab"));
+    const premiumPanels = Array.from(document.querySelectorAll(".premium-panel"));
+    const premiumCopyButtons = Array.from(document.querySelectorAll(".premium-copy-button"));
+    const premiumOutputIds = ["suno-output", "video-output", "marketing-output", "custom-gpt-output"];
+
+    function initializePremiumModules() {
+        premiumTabs.forEach((tab, index) => {
+            tab.addEventListener("click", () => showPremiumPanel(tab.dataset.premiumTarget));
+            tab.addEventListener("keydown", (event) => {
+                let nextIndex = null;
+                if (event.key === "ArrowRight" || event.key === "ArrowDown") nextIndex = (index + 1) % premiumTabs.length;
+                if (event.key === "ArrowLeft" || event.key === "ArrowUp") nextIndex = (index - 1 + premiumTabs.length) % premiumTabs.length;
+                if (event.key === "Home") nextIndex = 0;
+                if (event.key === "End") nextIndex = premiumTabs.length - 1;
+                if (nextIndex !== null) {
+                    event.preventDefault();
+                    const nextTab = premiumTabs[nextIndex];
+                    nextTab.focus();
+                    showPremiumPanel(nextTab.dataset.premiumTarget);
+                }
+            });
+        });
+
+        premiumCopyButtons.forEach((button) => {
+            button.addEventListener("click", async () => {
+                const output = document.getElementById(button.dataset.copyPremium);
+                const text = output?.dataset.generatedText || "";
+                if (!text) { showToast("Generate the main prompt first.", "warning"); return; }
+                try { await navigator.clipboard.writeText(text); showToast("Premium output copied.", "success"); }
+                catch (error) { const copied = fallbackCopy(text); showToast(copied ? "Premium output copied." : "The output could not be copied automatically.", copied ? "success" : "error"); }
+            });
+        });
+        resetPremiumOutputs();
+    }
+
+    function showPremiumPanel(panelId) {
+        premiumTabs.forEach((tab) => {
+            const active = tab.dataset.premiumTarget === panelId;
+            tab.classList.toggle("active", active);
+            tab.setAttribute("aria-selected", String(active));
+            tab.tabIndex = active ? 0 : -1;
+        });
+        premiumPanels.forEach((panel) => {
+            const active = panel.id === panelId;
+            panel.hidden = !active;
+            panel.classList.toggle("active", active);
+        });
+    }
+
+    function collectPremiumGeneratorData() {
+        return {
+            characterCount: getValue("characterCount") || "one adult woman",
+            heritage: getValue("ethnicityHeritage") || "Caribbean",
+            island: getValue("islandInfluence") || "the Caribbean",
+            celebration: getValue("celebrationType") || "a Caribbean cultural celebration",
+            scene: getValue("sceneContext") || "a vibrant tropical setting",
+            artStyle: getValue("artStyle") || "cinematic realism",
+            mood: getValue("mood") || "joyful, bold, and celebratory",
+            palette: getValue("colorPalette") || "vibrant tropical colors with gold accents",
+            lighting: getValue("lighting") || "warm cinematic lighting",
+            outfit: getValue("outfitCategory") || "Caribbean-inspired fashion",
+            background: getValue("backgroundLocation") || "a vibrant Caribbean setting",
+            movement: getValue("movement") || getValue("pose") || "graceful celebratory movement",
+            expression: getValue("facialExpression") || "a radiant joyful expression",
+            energy: getValue("energyLevel") || "warm joyful energy",
+            orientation: getValue("orientation") || "vertical portrait orientation",
+            atmosphere: formatList(getMultiValues("atmosphericDetails")),
+            costumeDetails: formatList(getMultiValues("costumeDetails")),
+            mainPrompt: state.generatedPrompt || ""
+        };
+    }
+
+    function generatePremiumOutputs(mainPrompt) {
+        if (!mainPrompt) { resetPremiumOutputs(); return; }
+        const data = collectPremiumGeneratorData();
+        setPremiumOutput("suno-output", buildSunoMusicPrompt(data));
+        setPremiumOutput("video-output", buildVideoScript(data));
+        setPremiumOutput("marketing-output", buildMarketingPrompt(data));
+        setPremiumOutput("custom-gpt-output", buildCustomGptConfiguration(data));
+    }
+
+    function buildSunoMusicPrompt(data) {
+        return `SUNO AI MUSIC PROMPT
+
+SONG TITLE
+Tropical Queen Rising
+
+CORE SONG CONCEPT
+Create a fully original Caribbean-inspired celebration anthem connected to ${data.celebration} and ${data.island}. Center confidence, sisterhood, cultural pride, movement, joy, beauty, and stepping boldly into the spotlight.
+
+GENRE AND STYLE
+Blend modern soca, dancehall, Afro-Caribbean percussion, tropical pop, cinematic festival music, and polished contemporary R&B.
+
+VOCAL DIRECTION
+Use a confident adult female lead with layered female harmonies, celebratory chants, call-and-response moments, and a powerful final chorus. Communicate ${data.energy} and ${data.expression}.
+
+MOOD
+${capitalizeText(data.mood)}.
+
+INSTRUMENTATION
+Steelpan accents, Caribbean drums, congas, shakers, bass guitar, rhythmic guitar, warm synths, brass bursts, claps, cinematic percussion, and crowd-style vocal textures. Build the rhythm around ${data.movement}.
+
+SONG STRUCTURE
+Intro: Island atmosphere and distant percussion.
+Verse 1: Confidence, beauty, cultural pride, and preparation.
+Pre-Chorus: Rising drums and harmonies.
+Chorus: A bold tropical-queen sing-along hook.
+Verse 2: Movement, sisterhood, fashion, color, and ${data.celebration}.
+Bridge: Pride, freedom, and becoming.
+Final Chorus: Full percussion, harmonies, chants, brass, and festival energy.
+Outro: Steelpan, crowd vocals, and a confident final line.
+
+LYRICAL THEMES
+Caribbean pride, feminine power, sisterhood, radiant beauty, island energy, dancing, cultural joy, and owning the moment.
+
+VISUAL CONNECTION
+Translate ${data.palette}, ${data.lighting}, ${data.outfit}, and ${data.background} into sound.
+
+PRODUCTION QUALITY
+Radio-ready mix, clean vocals, strong low end, bright percussion, controlled dynamics, and a cinematic festival finish.
+
+ORIGINALITY RULE
+Create a fully original song. Do not imitate a named singer, copyrighted song, protected melody, or existing recording.`;
+    }
+
+    function buildVideoScript(data) {
+        const plural = data.characterCount !== "one adult woman";
+        const subject = plural ? "the women" : "the woman";
+        const pronoun = plural ? "they" : "she";
+        return `VIDEO SCRIPT PROMPT
+
+VIDEO TITLE
+Tropical Queen Scene
+
+VIDEO LENGTH
+45 seconds
+
+VIDEO FORMAT
+${capitalizeText(data.orientation)}
+
+CREATIVE DIRECTION
+Create a professionally polished Caribbean-inspired fashion and celebration video based on ${data.celebration} and ${data.island}. Feature ${data.characterCount}, styled in ${data.outfit}. Use ${data.artStyle}, ${data.palette}, ${data.lighting}, and ${data.mood}.
+
+SCENE 1 — OPENING ESTABLISHING SHOT | 0–5 seconds
+VISUAL: Wide cinematic view of ${data.background}. ${data.atmosphere ? `Include ${data.atmosphere}.` : "Include tropical movement and subtle cultural atmosphere."}
+CAMERA: Slow forward movement.
+AUDIO: Distant Caribbean percussion and rising musical pulse.
+ON-SCREEN TEXT: “Tropical Queen Energy”
+
+SCENE 2 — CHARACTER REVEAL | 5–12 seconds
+VISUAL: Reveal ${data.characterCount} with ${data.expression}. ${data.costumeDetails ? `Highlight ${data.costumeDetails}.` : "Highlight polished Caribbean-inspired fashion details."}
+CAMERA: Smooth upward reveal from outfit details to the face.
+VOICEOVER: “This is more than a look. This is culture, confidence, and celebration in motion.”
+
+SCENE 3 — BEAUTY AND FASHION DETAILS | 12–20 seconds
+VISUAL: Close-ups of hair, makeup, jewelry, fabric, feathers, beadwork, and movement.
+CAMERA: Close-ups, side angles, and a rotating fashion shot.
+VOICEOVER: “Every color tells a story. Every detail carries the spirit of the islands.”
+
+SCENE 4 — MOVEMENT AND CELEBRATION | 20–31 seconds
+VISUAL: Show ${subject} moving with ${data.movement}. ${capitalizeText(pronoun)} should appear confident, natural, joyful, and connected to the environment.
+CAMERA: Tracking shots, one low-angle confidence shot, and one wide scene.
+VOICEOVER: “Bold enough to be seen. Free enough to move. Powerful enough to own the moment.”
+
+SCENE 5 — HERO MOMENT | 31–40 seconds
+VISUAL: Strongest hero shot with ${data.energy}, polished lighting, and clear focus.
+CAMERA: Slow cinematic push-in.
+VOICEOVER: “She is the celebration. She is the rhythm. She is the tropical queen.”
+
+SCENE 6 — FINAL FRAME | 40–45 seconds
+VISUAL: Confident final pose with fabric, feathers, light, or atmosphere continuing to move.
+ON-SCREEN TEXT: “Tropical Queen Scene Generator”
+SECONDARY TEXT: “Create the vision. Build the prompt. Bring the scene to life.”
+AUDIO: Strong percussion hit and layered female vocal chant.
+
+VIDEO QUALITY REQUIREMENTS
+Use believable adult anatomy, realistic movement, stable faces, consistent wardrobes, cohesive lighting, smooth transitions, readable text, and professional color grading. Avoid warped hands, flicker, duplicated characters, or changing costumes.`;
+    }
+
+    function buildMarketingPrompt(data) {
+        return `MARKETING CONTENT PROMPT
+
+ROLE
+Act as a professional Caribbean-inspired creative marketing strategist and conversion-focused copywriter.
+
+CONCEPT
+Promote a visual concept featuring ${data.characterCount}, ${data.heritage} representation, ${data.celebration}, and ${data.island} inspiration.
+
+VISUAL DIRECTION
+Reflect ${data.artStyle}, ${data.mood}, ${data.palette}, ${data.lighting}, ${data.outfit}, and ${data.background}.
+
+TARGET AUDIENCE
+Content creators, AI art creators, Caribbean culture enthusiasts, fashion lovers, digital-product customers, event promoters, and social media users who enjoy bold tropical imagery and culturally respectful storytelling.
+
+CREATE ALL COMPLETE DELIVERABLES
+1. One memorable campaign title.
+2. One hook under 15 words.
+3. One 80–120 word product or project description.
+4. One finished Instagram/Facebook caption with CTA.
+5. One concise TikTok caption with hook and CTA.
+6. One searchable Pinterest title.
+7. One complete Pinterest description using natural search keywords.
+8. One compelling email subject line.
+9. One short preview line.
+10. One complete promotional email with opening, concept, benefit, CTA, and warm closing.
+11. Three short CTAs: engagement, purchase/download, and share.
+12. Twelve relevant hashtags.
+
+TONE
+Bold, warm, celebratory, polished, feminine, culturally respectful, and confident. Avoid stereotypes, careless blending of traditions, generic corporate language, and exaggerated promises.
+
+MAIN VISUAL REFERENCE
+${data.mainPrompt}
+
+FINAL REQUIREMENT
+Return complete copy-and-paste-ready marketing content, not an outline or placeholders.`;
+    }
+
+    function buildCustomGptConfiguration(data) {
+        return `COMPLETE CUSTOM GPT CONFIGURATION
+
+GPT NAME
+Tropical Queen Scene Creator
+
+GPT PURPOSE
+Help users create polished Caribbean-themed image prompts featuring one to four adult women while keeping every result cohesive, beginner-friendly, and culturally respectful.
+
+SUGGESTED WELCOME MESSAGE
+Welcome to Tropical Queen Scene Creator. Tell me what kind of Caribbean-inspired image you want, or share the island influence, celebration, number of women, outfit, mood, and art style. I’ll turn your choices into one polished image prompt.
+
+COMPLETE CUSTOM GPT INSTRUCTIONS
+You are Tropical Queen Scene Creator, a professional Caribbean-themed AI image prompt specialist.
+
+GOALS AND RESPONSIBILITIES
+- Guide users through subject, culture, fashion, beauty, pose, environment, art style, lighting, camera view, and quality.
+- Ask only for genuinely missing information and no more than five focused questions at once.
+- Accept short answers, detailed descriptions, or reference images.
+- Produce one natural, polished, ready-to-copy image prompt.
+- Preserve the selected island, celebration, character count, wardrobe, colors, mood, and composition.
+- Remove empty details, contradictions, and repetition.
+
+CHARACTER RULES
+- Adult women only.
+- Never generate children, teenagers, age-ambiguous subjects, or male characters.
+- Support one to four adult women and never exceed four.
+- Remove group-only language from solo scenes.
+- Define arrangement and interaction clearly for groups.
+- Preserve natural body diversity and believable adult anatomy.
+
+CULTURAL RULES
+- Treat Caribbean cultures as distinct.
+- Keep details aligned with the chosen island or festival.
+- Use “Caribbean-inspired” or “heritage-inspired” when exact traditional accuracy is not established.
+- Avoid stereotypes, caricatures, sexualized assumptions, and unsupported claims of authenticity.
+
+OUTPUT ORDER
+1. Character count and identity.
+2. Caribbean heritage or island influence.
+3. Celebration and scene concept.
+4. Appearance and facial details.
+5. Hair, makeup, nails, and beauty.
+6. Clothing, jewelry, accessories, and props.
+7. Pose, movement, expression, and interaction.
+8. Background, crowd, weather, and atmosphere.
+9. Art style, mood, colors, and lighting.
+10. Camera, composition, orientation, and quality.
+11. Final anatomy and consistency direction.
+
+BEHAVIOR AND RESPONSE GUIDELINES
+- Begin by asking what the user wants to create.
+- Do not repeat answered questions.
+- Analyze reference images for visible style, mood, color, subject count, wardrobe, composition, environment, and lighting.
+- Treat references as inspiration only and never copy them exactly.
+- Do not identify real people in images.
+- Resolve contradictions before producing the final prompt.
+- Keep the final answer copy-and-paste ready with no unnecessary explanation.
+
+TONE AND PERSONALITY
+Warm, clear, creative, confident, direct, beginner-friendly, culturally thoughtful, and professional.
+
+RULES AND LIMITATIONS
+- Adult women only; maximum four.
+- No males or minors.
+- No automatic negative prompt.
+- No careless cultural mixing.
+- No crowns or tiaras unless requested.
+- No fake HUDs, dashboards, analytics, scan lines, or floating tech clutter unless requested.
+- No random decorations that weaken the focal point.
+
+SUGGESTED KNOWLEDGE FILES TO UPLOAD
+1. Generator category guide.
+2. Caribbean island and regional reference guide.
+3. Carnival and festival reference guide.
+4. Culturally respectful language guide.
+5. Fashion, costume, fabric, and jewelry vocabulary guide.
+6. Hair, makeup, and beauty guide.
+7. Camera and composition guide.
+8. Lighting and color palette guide.
+9. Image-prompt quality checklist.
+10. Brand voice and visual style guide.
+
+CONVERSATION STARTERS
+1. Create a Trinidad Carnival image prompt with three adult women in feathered costumes.
+2. Help me design a luxury Caribbean resort fashion scene featuring one woman.
+3. Turn my reference image into an original Caribbean-inspired prompt without copying it.
+4. Create a Jamaica Carnival group scene with four adult women dancing in formation.
+5. Help me choose the best island influence, style, colors, and lighting.
+
+BEST PRACTICES FOR USING THE GPT
+- Name the island, country, festival, or influence when possible.
+- State the number of adult women.
+- Add outfit, art style, mood, colors, and setting.
+- Review cultural details before publishing or selling.
+- Use references for inspiration, not duplication.
+- Explain exactly what should change when regenerating.
+
+TESTING CHECKLIST
+1. Never creates male characters.
+2. Never creates minors.
+3. Never exceeds four main characters.
+4. Solo scenes remove group language.
+5. Group scenes define arrangement and interaction.
+6. Specific festivals do not receive unrelated traditions.
+7. References remain inspiration only.
+8. Minimal requests trigger focused questions.
+9. Detailed requests do not repeat answered questions.
+10. Final result is one cohesive prompt.
+11. Empty selections are omitted.
+12. Repetition is removed.
+13. Composition, lighting, and quality are included.
+14. Tone stays professional and beginner-friendly.
+15. No negative prompt is added unless requested.
+
+CURRENT CREATIVE DIRECTION EXAMPLE
+Characters: ${data.characterCount}
+Heritage: ${data.heritage}
+Island influence: ${data.island}
+Celebration: ${data.celebration}
+Scene: ${data.scene}
+Wardrobe: ${data.outfit}
+Art style: ${data.artStyle}
+Mood: ${data.mood}
+Colors: ${data.palette}
+Lighting: ${data.lighting}
+Background: ${data.background}`;
+    }
+
+    function setPremiumOutput(outputId, text) {
+        const output = document.getElementById(outputId);
+        if (!output || !text) return;
+        output.textContent = text.trim();
+        output.dataset.generatedText = text.trim();
+        output.classList.remove("empty");
+        output.classList.add("generated");
+        const button = document.querySelector(`[data-copy-premium="${outputId}"]`);
+        if (button) button.disabled = false;
+    }
+
+    function resetPremiumOutputs() {
+        const messages = {
+            "suno-output": "Generate your main image prompt to create the matching Suno music prompt.",
+            "video-output": "Generate your main image prompt to create the matching video script.",
+            "marketing-output": "Generate your main image prompt to create the matching marketing prompt.",
+            "custom-gpt-output": "Generate your main image prompt to create the complete Custom GPT configuration."
+        };
+        premiumOutputIds.forEach((id) => {
+            const output = document.getElementById(id);
+            if (!output) return;
+            output.textContent = messages[id];
+            output.dataset.generatedText = "";
+            output.classList.add("empty");
+            output.classList.remove("generated");
+            const button = document.querySelector(`[data-copy-premium="${id}"]`);
+            if (button) button.disabled = true;
+        });
+    }
+
+    function capitalizeText(value) {
+        const text = String(value || "").trim();
+        return text ? text.charAt(0).toUpperCase() + text.slice(1) : "";
+    }
+
+    initializePremiumModules();
 
     initialize();
 });
